@@ -1,11 +1,9 @@
 package com.main;
 import java.util.*;
 
-//Use Case 1 : Initialize class and Display Consist Summary
-// This class represents the entry point of the Train Management System
-// In this use case I initialized a ArrayList of Strings
-// And I print the size of the List
-
+//Use Case 2 : Add Passenger Bogies to Train (ArrayList Operations)
+// In this use case We implemented how We can add passenger bogies, How to remove Passenger bogies and How to check if some bogie exists
+// and then print the passenger bogies that have been added
 public class Main {
 	public static void main(String[] args) {
 		
@@ -14,10 +12,21 @@ public class Main {
 		System.out.println("----------------------------------------");
 		List<String> train = new ArrayList<>();
 		
-		System.out.println("Train Initialised Successfully.");
-		System.out.println("Initial Bogie Count : "+train.size());
-		System.out.println("Currently train consists : "+train.toString());
+		train.add("Sleeper");
+		train.add("AC Chair");
+		train.add("First Class");
+		train.add("Second Class");
+		System.out.println("\n After adding bogies ");
+		System.out.println("Passenger Bogies :"+train.toString());
 		
-		System.out.println("System ready for operations !");
+		System.out.println("\n After removing 'AC Chair '");
+		train.remove("AC Chair");
+		System.out.println("Passenger Bogies : "+train.toString());
+		
+		System.out.println("\n Checking if Sleeper exists");
+		boolean check = train.contains("Sleeper");
+		System.out.println("Sleeper exists ? : "+check);
+		
+		System.out.println("UC2 Operations completed successfully !!");
 	}
 }
