@@ -6,7 +6,7 @@ import java.util.*;
 // In this use case I initialized a ArrayList of Strings
 // And I print the size of the List
 
-public class UCOneMain {
+public class Main {
 	public static void main(String[] args) {
 		
 		System.out.println("----------------------------------------");
