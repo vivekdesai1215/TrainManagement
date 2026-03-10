@@ -1,32 +1,31 @@
 package com.main;
 import java.util.*;
 
-//Use Case 2 : Add Passenger Bogies to Train (ArrayList Operations)
-// In this use case We implemented how We can add passenger bogies, How to remove Passenger bogies and How to check if some bogie exists
-// and then print the passenger bogies that have been added
+//Use Case 3 : Using Hashset to avoid adding duplicate Bogie Ids
+// In this use case I used HashSet to maintain unqiue BogiIds,
+// HashSet automatically rejects duplcate addition
+
+// @version 3.0
+// @author Vivek
+
+
 public class Main {
 	public static void main(String[] args) {
 		
 		System.out.println("----------------------------------------");
 		System.out.println("-------- Train Management App ----------");
 		System.out.println("----------------------------------------");
-		List<String> train = new ArrayList<>();
+		Set<String> bogieIds = new HashSet<>();
 		
-		train.add("Sleeper");
-		train.add("AC Chair");
-		train.add("First Class");
-		train.add("Second Class");
-		System.out.println("\n After adding bogies ");
-		System.out.println("Passenger Bogies :"+train.toString());
+		bogieIds.add("BG101");
+		bogieIds.add("BG101"); // Trying to enter duplicate value
+		bogieIds.add("BG102");
+		bogieIds.add("BG102"); // trying to add duplicate value
+		bogieIds.add("BG103");
+		bogieIds.add("BG105");
 		
-		System.out.println("\n After removing 'AC Chair '");
-		train.remove("AC Chair");
-		System.out.println("Passenger Bogies : "+train.toString());
+		System.out.println("Bogie ids added into HashSet : "+bogieIds.toString());
 		
-		System.out.println("\n Checking if Sleeper exists");
-		boolean check = train.contains("Sleeper");
-		System.out.println("Sleeper exists ? : "+check);
-		
-		System.out.println("UC2 Operations completed successfully !!");
+		System.out.println("UC3 Operations completed successfully !!");
 	}
 }
