@@ -1,11 +1,11 @@
 package com.main;
 import java.util.*;
 
-//Use Case 5 : Using LinkedHashSet to maintain Insertion Order and avoid Duplicate Insertion
-// In this use case I used LinkedHashSet to insert train bogies
-// LinkedHashSet maintains the Insertion order of Bogies and also avoids Duplicate Insertions
+//Use Case 6 : Using HashMap to store the Bogie Capacity along with the Bogie Name
+// In this Use Case I have used HashMap to store Bogie capacity along with the Bogie name
 
-// @version 5.0
+
+// @version 6.0
 // @author Vivek
 
 
@@ -15,15 +15,21 @@ public class Main {
 		System.out.println("----------------------------------------");
 		System.out.println("-------- Train Management App ----------");
 		System.out.println("----------------------------------------");
-		Set<String> train = new LinkedHashSet<>();
 		
-		train.add("Engine");
-		train.add("Sleeper");
-		train.add("AC");
-		train.add("Cargo");
-		train.add("Guard");
-		System.out.println("Train contains : "+train.toString());
-		System.out.println("\nUC5 Operations completed successfully !!");
+		Map<String,Integer> train = new HashMap<>();
+		train.put("Engine", 2);
+		train.put("First Class", 50);
+		train.put("Second Class", 100);
+		train.put("Third Class", 150);
+		train.put("Sleeper", 240);
+		
+		System.out.println("\nBogie Capacity Details : ");
+		for(Map.Entry<String, Integer> entry : train.entrySet()) {
+			System.out.println(entry.getKey()+ " -> "+entry.getValue());
+		}
+		
+		
+		System.out.println("\nUC6 Operations completed successfully !!");
 	}
 	
 }
