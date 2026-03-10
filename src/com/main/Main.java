@@ -1,11 +1,11 @@
 package com.main;
 import java.util.*;
 
-//Use Case 3 : Using Hashset to avoid adding duplicate Bogie Ids
-// In this use case I used HashSet to maintain unqiue BogiIds,
-// HashSet automatically rejects duplcate addition
+//Use Case 4 : Using LinkedList to maintain insertion Order
+// In this use case I LinkedList to maintain Insertion order of bogies
+// And also perform LinkedList operations
 
-// @version 3.0
+// @version 4.0
 // @author Vivek
 
 
@@ -15,17 +15,26 @@ public class Main {
 		System.out.println("----------------------------------------");
 		System.out.println("-------- Train Management App ----------");
 		System.out.println("----------------------------------------");
-		Set<String> bogieIds = new HashSet<>();
+		List<String> train = new LinkedList<>();
 		
-		bogieIds.add("BG101");
-		bogieIds.add("BG101"); // Trying to enter duplicate value
-		bogieIds.add("BG102");
-		bogieIds.add("BG102"); // trying to add duplicate value
-		bogieIds.add("BG103");
-		bogieIds.add("BG105");
+		train.add("Engine");
+		train.add("Sleeper");
+		train.add("AC");
+		train.add("Cargo");
+		train.add("Guard");
+		System.out.println("Initially Train contains : "+train.toString());
 		
-		System.out.println("Bogie ids added into HashSet : "+bogieIds.toString());
+		System.out.println("\nInsterting 'Pantry Car' at 2nd position");
+		train.add(2,"Pantry Car");
+		System.out.println("Train : "+train);
+		train.removeFirst();
+		train.removeLast();
+		System.out.println("\nAfter removing first and last bogie.");
+		System.out.println("Train contains : "+train);
 		
-		System.out.println("UC3 Operations completed successfully !!");
+		
+		System.out.println("\nUC4 Operations completed successfully !!");
 	}
+	
 }
+
