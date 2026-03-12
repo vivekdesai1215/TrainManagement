@@ -10,7 +10,7 @@ import com.trainmanagement.Bogie;
  * 		sorted using comparator
  * 		sorted on basis of capacity
  * 
- * @author Dilpreet
+ * @author Vivek
  * @version 7.0
  */
 
