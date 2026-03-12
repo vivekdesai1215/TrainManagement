@@ -10,13 +10,17 @@ import com.trainmanagement.Bogie;
 import com.trainmanagement.CargoBogie;
 
 /*
- * UC12: Safety Compliance Check for Goods Bogies
- * 		 Used Stream allMatch to check Validation
- * 		 Validation checking train is same or not
- * 		 Cylindrical only petroleum condition is used
+* UC16: Sort Passenger Bogies by Capacity (Bubble Sort – Algorithm Intro)
+ * 		 User provides passenger bogie capacities.
+		 System iterates through the array.
+		 Adjacent values are compared.
+		 If out of order, values are swapped.
+		 Multiple passes continue until sorted.
+		 Sorted result is displayed.
+		 Program continues.
  * 		 
  * @author Vivek
- * @version 12.0
+ * @version 16.0
  */
 
 
@@ -24,41 +28,31 @@ import com.trainmanagement.CargoBogie;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("==============================");
-        System.out.println(" Train Consist Management App ");
-        System.out.println("==============================");
-        System.out.println();
+	public static void main(String[] args){
+		System.out.println("==============================");
+		System.out.println(" Train Consist Management App ");
+		System.out.println("==============================");
+		System.out.println();
 
-        Scanner sc = new Scanner(System.in);
-
-        // First Cargo Bogie
-        System.out.print("Enter type of Cargo Bogie (e.g., Cylindrical/Rectangular): ");
-        String type1 = sc.nextLine();
-        CargoBogie c1 = new CargoBogie(type1);
-
-        System.out.print("Enter cargo to assign: ");
-        String cargo1 = sc.nextLine();
-        c1.assignCargo(cargo1);
-        System.out.println();
-
-        // Second Cargo Bogie
-        System.out.print("Enter type of Cargo Bogie: ");
-        String type2 = sc.nextLine();
-        CargoBogie c2 = new CargoBogie(type2);
-
-        System.out.print("Enter cargo to assign: ");
-        String cargo2 = sc.nextLine();
-        c2.assignCargo(cargo2);
-
-    }
-
-
-	
-	public static class CargoSafetyException extends RuntimeException{
-		public CargoSafetyException(String message){
-			super(message);
-		}
+		int[] capacities = {72,78,69,81};
+		System.out.println("Original capacities:");
+		for(int c : capacities) System.out.print(c + " ");
+		System.out.println("\n");
+		
+		for (int i = 0; i < capacities.length - 1; i++) {
+            boolean swapped = false;
+            for (int j = 0; j < capacities.length - i - 1; j++) {
+                if (capacities[j] > capacities[j + 1]) {
+                    int temp = capacities[j];
+                    capacities[j] = capacities[j + 1];
+                    capacities[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+            if (!swapped) break;
+        }
+		System.out.println("Sorted capacities: ");
+		for(int c : capacities) System.out.print(c + " ");
 	}
 
 }
