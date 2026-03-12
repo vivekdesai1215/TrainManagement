@@ -6,12 +6,11 @@ import java.util.stream.Collectors;
 import com.trainmanagement.Bogie;
 
 /*
- * UC9: Group Bogies by Type (Collectors.groupingBy)
- * 		Grouped the same bogies in a map
- * 		Used Stream to do grouping
+ * UC10: Count Total Seats in Train (reduce)
+ * 		 Sum of capacity using reduce in stream
  * 
  * @author Vivek
- * @version 8.0
+ * @version 10.0
 */
 
 
@@ -50,19 +49,11 @@ public class Main {
 			System.out.println(b.getName() + " -> " + b.getCapacity());
 		}
 		
-		Map<String,List<Bogie>> groupedMap = bogies.stream().collect(Collectors.groupingBy(bogie -> bogie.getName().strip()));
+		int totalCapacity = bogies.stream().map(bogie -> bogie.getCapacity()).reduce(0, Integer::sum);
 		
 		System.out.println();
-		System.out.println("Grouped Bogies:\n");
+		System.out.println("Total seating capacity of train: " + totalCapacity);
 
-		for(String key : groupedMap.keySet()) {
-			System.out.println("Bogie Type: " + key);
-			for(Bogie b : groupedMap.get(key)) {
-				System.out.println("Capacity -> " + b.getCapacity());
-			}
-			System.out.println();
-		}
-		
 
 	}
 
