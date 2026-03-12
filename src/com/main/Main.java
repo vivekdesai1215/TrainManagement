@@ -9,14 +9,15 @@ import com.trainmanagement.Bogie;
 import com.trainmanagement.CargoBogie;
 
 /*
- * UC17: Sort Bogie Names Using Arrays.sort()
- * 		 User provides bogie type names.
-		 System calls Arrays.sort() on the array.
-		 Java internally sorts the values.
-		 Sorted bogie names are displayed.
-		 Program continues.		 
+ * UC18: Linear Search for Bogie ID (Array-Based Searching)
+ * 		 User provides a list of bogie IDs.
+		 User provides a search key.
+		 System traverses the array sequentially.
+		 Each element is compared with the search key.
+		 If match found, search stops.
+		 Result is displayed.	 
  * @author Vivek
- * @version 17.0
+ * @version 18.0
  */
 
 
@@ -24,22 +25,45 @@ import com.trainmanagement.CargoBogie;
 import java.util.Scanner;
 
 public class Main {
-	public static void main(String[] args){
-		System.out.println("==============================");
-		System.out.println(" Train Consist Management App ");
-		System.out.println("==============================");
-		System.out.println();
+	 public static void main(String[] args) {
+	        System.out.println("==============================");
+	        System.out.println(" Train Consist Management App ");
+	        System.out.println("==============================");
+	        System.out.println();
 
-		String[] capacities = {"Sleeper","AC Chair","First Class","General","Luxury"};
-		
-		System.out.println("Original Bogies:");
-		System.out.print(Arrays.toString(capacities) + "\n\n");
-		
-		Arrays.sort(capacities);
-		
-		System.out.println("Sorted Bogies: ");
-		System.out.print(Arrays.toString(capacities));
-	}
+	        Scanner sc = new Scanner(System.in);
+
+	      
+	        System.out.print("Enter number of bogies: ");
+	        int n = sc.nextInt();
+	        sc.nextLine();
+
+	        String[] bogies = new String[n];
+	        for (int i = 0; i < n; i++) {
+	            System.out.print("Enter Bogie ID " + (i + 1) + ": ");
+	            bogies[i] = sc.nextLine();
+	        }
+
+	        System.out.println("\nAvailable Bogie IDs:");
+	        for (String s : bogies) System.out.println(s);
+
+	        System.out.print("\nEnter Bogie ID to search: ");
+	        String searchID = sc.nextLine();
+	        boolean found = false;
+
+	        for (String s : bogies) {
+	            if (s.equals(searchID)) {
+	                found = true;
+	                break;
+	            }
+	        }
+
+	        System.out.println();
+	        if (found) System.out.println("Bogie " + searchID + " found in train consist");
+	        else System.out.println("Bogie " + searchID + " not found in train consist");
+
+	        sc.close();
+	    }
 
 }
 
