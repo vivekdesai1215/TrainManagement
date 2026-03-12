@@ -1,36 +1,50 @@
 package com.main;
 import java.util.*;
 
-//Use Case 6 : Using HashMap to store the Bogie Capacity along with the Bogie Name
-// In this Use Case I have used HashMap to store Bogie capacity along with the Bogie name
+import com.trainmanagement.Bogie;
 
 
-// @version 6.0
-// @author Vivek
-
+/*
+ * UC7: Sort Bogies by Capacity (Comparator)
+ * 		Stored in class
+ * 		sorted using comparator
+ * 		sorted on basis of capacity
+ * 
+ * @author Dilpreet
+ * @version 7.0
+ */
 
 public class Main {
+
 	public static void main(String[] args) {
+		System.out.println("==============================");
+		System.out.println(" Train Consist Management App ");
+		System.out.println("==============================");
+		System.out.println();
 		
-		System.out.println("----------------------------------------");
-		System.out.println("-------- Train Management App ----------");
-		System.out.println("----------------------------------------");
+		List<Bogie> bogies = new ArrayList<>();
 		
-		Map<String,Integer> train = new HashMap<>();
-		train.put("Engine", 2);
-		train.put("First Class", 50);
-		train.put("Second Class", 100);
-		train.put("Third Class", 150);
-		train.put("Sleeper", 240);
+		bogies.add(new Bogie("Sleeper",72));
+		bogies.add(new Bogie("AC Chair",56));
+		bogies.add(new Bogie("First Class",24));
+		bogies.add(new Bogie("General",90));
 		
-		System.out.println("\nBogie Capacity Details : ");
-		for(Map.Entry<String, Integer> entry : train.entrySet()) {
-			System.out.println(entry.getKey()+ " -> "+entry.getValue());
+		System.out.println("Before sorting:");
+		
+		for(Bogie b : bogies) {
+			System.out.println(b.getCapacity() + " -> " + b.getCapacity());
 		}
 		
+		Collections.sort(bogies, Comparator.comparingInt(bogie -> bogie.getCapacity()));
 		
-		System.out.println("\nUC6 Operations completed successfully !!");
-	}
-	
-}
+		System.out.println();
+		System.out.println("After sorting:");
 
+		for(Bogie b : bogies) {
+			System.out.println(b.getName() + " -> " + b.getCapacity());
+		}
+		
+
+	}
+
+}
