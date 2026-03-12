@@ -28,7 +28,7 @@ public class Main {
 		System.out.println("==============================");
 		System.out.println();
 		
-		List<CargoBogie> cargoBogie = new ArrayList<>();
+		List<Bogie> bogies = new ArrayList<>();
 		Scanner sc = new Scanner(System.in);
 		boolean end = true;
 		do {
@@ -38,38 +38,34 @@ public class Main {
 				break;
 			}
 			
-			System.out.print("Enter Bogie Type  :(Cylindrical,Open,Box,...): ");
-			String type = sc.nextLine();
-			System.out.print("Enter the Cargo being transported (Petroleum, Coal, Grain,...): ");
-			String cargo = sc.nextLine();
-			cargoBogie.add(new CargoBogie(type,cargo));
+			System.out.print("Enter Bogie Name : ");
+			String name = sc.nextLine();
+			System.out.print("Enter Bogie Capacity : ");
+			int capacity = sc.nextInt();
+			sc.nextLine();
+			bogies.add(new Bogie(name,capacity));
 			
 		}while(end=true);
 		
-		System.out.println("Goods Bogies in Train: ");
-		for(CargoBogie b : cargoBogie) {
-			System.out.println(b.type + " -> " + b.cargo);
-		}
-		System.out.println();
-
-		boolean isSafe = cargoBogie.stream().allMatch(bogie -> validateBogie(bogie));
-
-		System.out.println("Safety Compliance Status: " + isSafe);
-
-		if(isSafe) System.out.println("Train formation is SAFE");
-		else System.out.println("Train formation is NOT SAFE");
-
-		}
-	
-	
-		public static boolean validateBogie(CargoBogie b) {
-		if ("cylindrical".equalsIgnoreCase(b.type)) {
-		    return "Petroleum".equalsIgnoreCase(b.cargo);
-		}
-		return true;
-		}
+		long startTime1 = System.nanoTime();
+		List<Bogie> list1 = bogies.stream().filter(bogie -> bogie.getCapacity() > 60).collect(Collectors.toList());
+		long endTime1 = System.nanoTime();
 		
-
+		List<Bogie> list2 = new ArrayList<>();
+		long startTime2 = System.nanoTime();
+		for(Bogie bogie : bogies) {
+			if(bogie.getCapacity() > 60) {
+				list2.add(bogie);
+			}
+		}
+		long endTime2 = System.nanoTime();
+		
+		
+		System.out.println("Stream Execution Time(ns): " + (endTime1-startTime1));
+		System.out.println("Loop Execution Time(ns): " + (endTime2-startTime2));
+		
+		System.out.println((endTime1-startTime1) >(endTime2-startTime2)? "Loop Execution was faster than Stream":"Stream execution was faster than Loop" );
+	}
 
 	}
 
