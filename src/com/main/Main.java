@@ -21,37 +21,45 @@ import com.trainmanagement.CargoBogie;
 
 
 
+import java.util.Scanner;
+
 public class Main {
+    public static void main(String[] args) {
+        System.out.println("==============================");
+        System.out.println(" Train Consist Management App ");
+        System.out.println("==============================");
+        System.out.println();
 
-	public static void main(String[] args) {
-		System.out.println("==============================");
-		System.out.println(" Train Consist Management App ");
-		System.out.println("==============================");
-		System.out.println();
+        Scanner sc = new Scanner(System.in);
 
-		List<Bogie> bogies = new ArrayList<>();
-		Scanner sc = new Scanner(System.in);
-		boolean end = true;
-		do {
-			try {
+        // First Cargo Bogie
+        System.out.print("Enter type of Cargo Bogie (e.g., Cylindrical/Rectangular): ");
+        String type1 = sc.nextLine();
+        CargoBogie c1 = new CargoBogie(type1);
 
-				System.out.print("\nWanna add Bogie  ?(y/n) : ");
-				String option = sc.nextLine();
-				if(!option.equalsIgnoreCase("y")) {
-					break;
-				}
+        System.out.print("Enter cargo to assign: ");
+        String cargo1 = sc.nextLine();
+        c1.assignCargo(cargo1);
+        System.out.println();
 
-				System.out.print("Enter Bogie Name : ");
-				String name = sc.nextLine();
-				System.out.print("Enter Bogie Capacity : ");
-				int capacity = sc.nextInt();
-				sc.nextLine();
-				bogies.add(new Bogie(name,capacity));						
-			}catch(InvalidInputException e) {
-				System.out.println(e.getMessage());
-			}}while(end=true);
+        // Second Cargo Bogie
+        System.out.print("Enter type of Cargo Bogie: ");
+        String type2 = sc.nextLine();
+        CargoBogie c2 = new CargoBogie(type2);
+
+        System.out.print("Enter cargo to assign: ");
+        String cargo2 = sc.nextLine();
+        c2.assignCargo(cargo2);
+
+    }
 
 
+	
+	public static class CargoSafetyException extends RuntimeException{
+		public CargoSafetyException(String message){
+			super(message);
+		}
 	}
+
 }
 
