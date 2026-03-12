@@ -9,18 +9,14 @@ import com.trainmanagement.Bogie;
 import com.trainmanagement.CargoBogie;
 
 /*
- * UC19: Binary Search for Bogie ID (Optimized Searching)
- * 		 User provides sorted bogie IDs.
-		 User provides a search key.
-		 System initializes low and high indexes.
-		 System finds the middle index.
-		 Key is compared with middle value.
-		 Search range is halved.
-		 Steps repeat until found or exhausted.
-		 Result is displayed.
-		 Program continues. 
+ * UC20: Exception Handling During Search Operations
+ * 		 User triggers a search operation.
+		 System checks whether the bogie collection is empty.
+		 If no bogies are available, the system throws an IllegalStateException.
+		 The operation stops immediately.
+		 User receives a meaningful error message.
  * @author Vivek
- * @version 19.0
+ * @version 20.0
  */
 
 
@@ -55,7 +51,9 @@ public class Main {
         System.out.println("\nAvailable Bogie IDs (sorted):");
         for (String s : bogies) System.out.println(s);
 
-        // Search dynamically
+        // throwing an Exception if there areno bogies added
+        if(bogies.length==0)throw new IllegalStateException("No bogies available in train consist. Search operation cannot proceed.");
+       
         System.out.print("\nEnter Bogie ID to search: ");
         String searchID = sc.nextLine();
         boolean found = false;
