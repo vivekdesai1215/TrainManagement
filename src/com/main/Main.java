@@ -1,18 +1,18 @@
 package com.main;
+
 import java.util.*;
+import java.util.stream.Collectors;
 
 import com.trainmanagement.Bogie;
 
-
 /*
- * UC7: Sort Bogies by Capacity (Comparator)
- * 		Stored in class
- * 		sorted using comparator
- * 		sorted on basis of capacity
+ * UC8: Filter Passenger Bogies Using Streams
+ * 		Stored Bogies in class
+ * 		Filter bogies with capacity > 60
  * 
  * @author Vivek
- * @version 7.0
- */
+ * @version 8.0
+*/
 
 public class Main {
 
@@ -22,23 +22,36 @@ public class Main {
 		System.out.println("==============================");
 		System.out.println();
 		
+		Scanner sc = new Scanner(System.in);
 		List<Bogie> bogies = new ArrayList<>();
 		
-		bogies.add(new Bogie("Sleeper",72));
-		bogies.add(new Bogie("AC Chair",56));
-		bogies.add(new Bogie("First Class",24));
-		bogies.add(new Bogie("General",90));
+		boolean end = true;
+		do {
+			System.out.print("\nWanna add Bogie  ?(y/n) : ");
+			String option = sc.nextLine();
+			if(!option.equalsIgnoreCase("y")) {
+				break;
+			}
+			
+			System.out.print("Enter Bogie Name : ");
+			String name = sc.nextLine();
+			System.out.print("Enter Bogie Capacity : ");
+			int capacity = sc.nextInt();
+			sc.nextLine();
+			bogies.add(new Bogie(name,capacity));
+			
+		}while(end=true);
 		
-		System.out.println("Before sorting:");
+		System.out.println("\nAll Bogies:");
 		
 		for(Bogie b : bogies) {
-			System.out.println(b.getCapacity() + " -> " + b.getCapacity());
+			System.out.println(b.getName() + " -> " + b.getCapacity());
 		}
 		
-		Collections.sort(bogies, Comparator.comparingInt(bogie -> bogie.getCapacity()));
+		bogies = bogies.stream().filter(bogie -> bogie.getCapacity() > 60).collect(Collectors.toList());
 		
 		System.out.println();
-		System.out.println("After sorting:");
+		System.out.println("Filtered Bogies > 60:");
 
 		for(Bogie b : bogies) {
 			System.out.println(b.getName() + " -> " + b.getCapacity());
