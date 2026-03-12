@@ -9,61 +9,78 @@ import com.trainmanagement.Bogie;
 import com.trainmanagement.CargoBogie;
 
 /*
- * UC18: Linear Search for Bogie ID (Array-Based Searching)
- * 		 User provides a list of bogie IDs.
+ * UC19: Binary Search for Bogie ID (Optimized Searching)
+ * 		 User provides sorted bogie IDs.
 		 User provides a search key.
-		 System traverses the array sequentially.
-		 Each element is compared with the search key.
-		 If match found, search stops.
-		 Result is displayed.	 
+		 System initializes low and high indexes.
+		 System finds the middle index.
+		 Key is compared with middle value.
+		 Search range is halved.
+		 Steps repeat until found or exhausted.
+		 Result is displayed.
+		 Program continues. 
  * @author Vivek
- * @version 18.0
+ * @version 19.0
  */
 
 
 
 import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
-	 public static void main(String[] args) {
-	        System.out.println("==============================");
-	        System.out.println(" Train Consist Management App ");
-	        System.out.println("==============================");
-	        System.out.println();
+    public static void main(String[] args) {
+        System.out.println("==============================");
+        System.out.println(" Train Consist Management App ");
+        System.out.println("==============================");
+        System.out.println();
 
-	        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-	      
-	        System.out.print("Enter number of bogies: ");
-	        int n = sc.nextInt();
-	        sc.nextLine();
+        // Let user decide how many bogies
+        System.out.print("Enter number of bogies: ");
+        int n = sc.nextInt();
+        sc.nextLine(); // consume newline
 
-	        String[] bogies = new String[n];
-	        for (int i = 0; i < n; i++) {
-	            System.out.print("Enter Bogie ID " + (i + 1) + ": ");
-	            bogies[i] = sc.nextLine();
-	        }
+        String[] bogies = new String[n];
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter Bogie ID " + (i + 1) + ": ");
+            bogies[i] = sc.nextLine();
+        }
 
-	        System.out.println("\nAvailable Bogie IDs:");
-	        for (String s : bogies) System.out.println(s);
+        // Sort bogies for binary search
+        Arrays.sort(bogies);
 
-	        System.out.print("\nEnter Bogie ID to search: ");
-	        String searchID = sc.nextLine();
-	        boolean found = false;
+        System.out.println("\nAvailable Bogie IDs (sorted):");
+        for (String s : bogies) System.out.println(s);
 
-	        for (String s : bogies) {
-	            if (s.equals(searchID)) {
-	                found = true;
-	                break;
-	            }
-	        }
+        // Search dynamically
+        System.out.print("\nEnter Bogie ID to search: ");
+        String searchID = sc.nextLine();
+        boolean found = false;
 
-	        System.out.println();
-	        if (found) System.out.println("Bogie " + searchID + " found in train consist");
-	        else System.out.println("Bogie " + searchID + " not found in train consist");
+        int left = 0;
+        int right = bogies.length - 1;
 
-	        sc.close();
-	    }
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            int cmp = searchID.compareTo(bogies[mid]);
 
+            if (cmp == 0) {
+                found = true;
+                break;
+            } else if (cmp > 0) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        System.out.println();
+        if (found) System.out.println("Bogie " + searchID + " found in train consist");
+        else System.out.println("Bogie " + searchID + " not found in train consist");
+
+        sc.close();
+    }
 }
-
