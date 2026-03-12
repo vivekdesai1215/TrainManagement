@@ -6,13 +6,15 @@ import java.util.stream.Collectors;
 import com.trainmanagement.Bogie;
 
 /*
- * UC8: Filter Passenger Bogies Using Streams
- * 		Stored Bogies in class
- * 		Filter bogies with capacity > 60
+ * UC9: Group Bogies by Type (Collectors.groupingBy)
+ * 		Grouped the same bogies in a map
+ * 		Used Stream to do grouping
  * 
  * @author Vivek
  * @version 8.0
 */
+
+
 
 public class Main {
 
@@ -21,7 +23,6 @@ public class Main {
 		System.out.println(" Train Consist Management App ");
 		System.out.println("==============================");
 		System.out.println();
-		
 		Scanner sc = new Scanner(System.in);
 		List<Bogie> bogies = new ArrayList<>();
 		
@@ -42,19 +43,24 @@ public class Main {
 			
 		}while(end=true);
 		
-		System.out.println("\nAll Bogies:");
+
+		System.out.println("All Bogies:");
 		
 		for(Bogie b : bogies) {
 			System.out.println(b.getName() + " -> " + b.getCapacity());
 		}
 		
-		bogies = bogies.stream().filter(bogie -> bogie.getCapacity() > 60).collect(Collectors.toList());
+		Map<String,List<Bogie>> groupedMap = bogies.stream().collect(Collectors.groupingBy(bogie -> bogie.getName().strip()));
 		
 		System.out.println();
-		System.out.println("Filtered Bogies > 60:");
+		System.out.println("Grouped Bogies:\n");
 
-		for(Bogie b : bogies) {
-			System.out.println(b.getName() + " -> " + b.getCapacity());
+		for(String key : groupedMap.keySet()) {
+			System.out.println("Bogie Type: " + key);
+			for(Bogie b : groupedMap.get(key)) {
+				System.out.println("Capacity -> " + b.getCapacity());
+			}
+			System.out.println();
 		}
 		
 
