@@ -34,7 +34,6 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        // Let user decide how many bogies
         System.out.print("Enter number of bogies: ");
         int n = sc.nextInt();
         sc.nextLine(); // consume newline
